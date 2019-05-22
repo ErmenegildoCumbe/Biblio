@@ -51,7 +51,7 @@ class CustomAuthController extends Controller
        }
        
        if( Auth::attempt(['email' => $request->email, 'password' => $request->password, 'estado' =>1], $remember)){
-        return redirect('/home');
+        return redirect('/livro');
        }
     else{
        // return 
@@ -113,7 +113,7 @@ class CustomAuthController extends Controller
          else
              $user = $socialProvider->user;
              auth()->login($user);
-             return redirect('/home');
+             return redirect('/livro');
  
     }
 }

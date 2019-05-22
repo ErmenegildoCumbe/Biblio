@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect()->route('livro.index');
 })->middleware('auth')->name('home');
 
 Route::get('/home', function () {
-    return view('home');
+    return redirect()->route('livro');
 })->middleware('auth');
 
 Route::get('pacote/requisitar', function () {
@@ -41,6 +41,10 @@ Route::get('/emprestimos/cancelados', 'EmprestimoController@cancelados')->middle
 
 // Rotas Reservas
 Route::resource('reserva', 'ReservaController')->middleware('auth');
+Route::get('reservar/{id}', 'ReservaController@criar')->middleware('auth');
+Route::get('reserva/confirmar/{id}', 'ReservaController@confirmar')->middleware('auth');
+Route::get('reserva/cancelar/{id}', 'ReservaController@cancelar')->middleware('auth');
+
 
 
 //Rotas pacote de viagem

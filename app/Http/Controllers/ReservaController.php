@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Biblioteca\Reserva;
 use Auth;
+use App\Biblioteca\Livro;
+use App\User;
 
 class ReservaController extends Controller
 {
@@ -15,8 +17,8 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        // $emprestimos = Emprestimo::where('estado', null)->get();
-        // return view('emprestimos.index',compact('emprestimos')); 
+        $reservas = Reserva::where('estado', null)->get();
+        return view('reservas.index',compact('reservas')); 
     }
 
     /**
@@ -37,11 +39,10 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        
         $request->validate([
             'livro'   => 'required|numeric',
             'nome'    => 'required|string|max:80',
-            'nr_estudante' => 'required|string',
+            'nr_estudante' => 'required|string|max:8',
         ]);
         $livro =  Livro::findOrFail($request->livro);
         $estudante = User::where('nr_estudante', $request->nr_estudante)->first();
@@ -52,14 +53,11 @@ class ReservaController extends Controller
             $estudante->save();
         }
         if ($estudante && $livro) {
-            $emprestimo = new Emprestimo; 
-           $emprestimo->data_entrega = date_create($request->data_entrega);
-           $emprestimo->estudante_id = $estudante->id;
-           $emprestimo->livro_id = $livro->id;
-           $emprestimo->bibliotecario_id = Auth::id();
-           $emprestimo->save();
-           $livro->estado = 2;
-           $livro->save();
+            $reserva = new Reserva; 
+            $reserva->estudante_id = $estudante->id;
+            $reserva->bibliotecario_id = Auth::id();
+            $reserva->livro_id = $livro->id;
+            $reserva->save();
            return redirect()->route('livro.index');
         }
         abort(404);
@@ -125,6 +123,22 @@ class ReservaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reserva = Reserva::findOrFail();
+        $reserva->delete();
+        return redirect()->route('reserva.index');
     }
+    public function criar($id){
+        $livro = Livro::findOrFail($id);
+        if ($livro->estado == 1) {
+            return view('reservas.create', compact('livro'));
+        }
+        else {
+            return redirect()->back()->with('error', 'Livro indisponível');
+        }
+
+    }
+    public function confirmar($id){
+        $reserva = Reserva::findOrFail();
+    }
+    
 }

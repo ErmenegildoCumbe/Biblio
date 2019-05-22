@@ -9,7 +9,7 @@ class Reserva extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'data_realizacao', 'estudante_id', 'bibliotecario_id', 'livro_id'
+        'estudante_id', 'bibliotecario_id', 'livro_id'
     ];
     protected $with = ['bibliotecario', 'estudante'];
     // Relações

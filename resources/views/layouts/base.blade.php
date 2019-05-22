@@ -195,7 +195,7 @@
                         <ul class="nav nav-second-level">
                             {{--  <li> <a href="{{ route('emprestimo.create') }}"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Emitir Emprestimo</span></a> </li>  --}}
                             <li> <a href="{{ route('emprestimo.index') }}"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Confirmados</span></a> </li>
-                            <li> <a href="{{ route('pedidospassagemconfirmados') }}"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Pendentes</span></a> </li>
+                            <li> <a href="{{ route('reserva.index') }}"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Reservas</span></a> </li>
                             <li> <a href="/emprestimos/cancelados"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Cancelados</span></a> </li>
                             <li> <a href="/emprestimos/sucedidos"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Bemsucedidos</span></a> </li>
                             {{--  <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu"> Minhas Requisiçoes </span><span class="fa arrow"></span></a>
@@ -221,14 +221,14 @@
                         </ul>
                     </li>
                     {{--  @endcan  --}}
-                    <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Companhias de Viagem<span class="fa arrow"></span></span></a>
+                    {{--  <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Companhias de Viagem<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="javascript:void(0)"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Criar Nova</span></a> </li>
                             <li> <a href="javascript:void(0)"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Lista de Companhias</span></a> </li>
                             <li> <a href="javascript:void(0)"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Lista de Companhias Desactivadas</span></a> </li>
                        
                         </ul>
-                    </li>
+                    </li>  --}}
                     
                 </ul>
             </div>
@@ -237,13 +237,26 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                               
+                @if (session('error'))
+                    <div class="row advertise-sm">
+                        <div class="col-12">
+                            <div class="alert alert-danger alert-dismissible fade show pr-5 mb-0">
+                                <button type="button" class="close close-f-sm" data-dismiss="alert">×</button>
+                                <ul>
+                                    <li>
+                                        {{ session('error')}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @endif        
                     @yield("content")
                
 
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Vanangas </footer>
+            <footer class="footer text-center"> 2019 &copy; DMI </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>

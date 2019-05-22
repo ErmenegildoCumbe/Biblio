@@ -15,7 +15,6 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('data_realizacao');
             $table->integer('estado')->nullable();
             $table->integer('estudante_id')->unsigned();
             $table->foreign('estudante_id')->references('id')->on('users')->onDelete('cascade');

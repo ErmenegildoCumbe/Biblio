@@ -9,7 +9,7 @@
 <div class="row bg-title">
         <!-- .page title -->
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Emissão de Emprestimo de Livro {{$livro->titulo}}</h4> </div>
+            <h4 class="page-title">Emissão de Reserva do Livro {{$livro->titulo}}</h4> </div>
         <!-- /.page title -->
         <!-- .breadcrumb -->
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
@@ -17,8 +17,8 @@
             
             <ol class="breadcrumb">
                 <li><a href="#">Biblioteca</a></li>
-                <li><a href="#">Emprestimo</a></li>                
-                <li class="active">Emitir Novo</li>
+                <li><a href="#">Reserva</a></li>                
+                <li class="active">Emitir Nova</li>
             </ol>
         </div>
         <!-- /.breadcrumb -->
@@ -28,10 +28,10 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"> Preencha os Dados do Emprestimo</div>
+            <div class="panel-heading"> Preencha os Dados da Reserva</div>
             <div class="panel-wrapper collapse in" aria-expanded="true">
                 <div class="panel-body">
-                    <form action="{{ route('emprestimo.store') }}" class="form-material" method="POST">
+                    <form action="{{ route('reserva.store') }}" class="form-material" method="POST">
                             {{ csrf_field() }}
                             <input type="hidden" name="livro" value="{{ $livro->id }}">
                         <div class="form-body">
@@ -81,24 +81,6 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                        <div class="example">
-                                                <label class="control-label">Data de devolução</label>
-                                                
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control mydatepicker" name="data_entrega" placeholder="mm/dd/yyyy"> <span class="input-group-addon"><i class="icon-calender"></i></span> 
-                                                </div>
-                                                    @if ($errors->has('data_entrega'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('data_entrega') }}</strong>
-                                                    </span>
-                                                    @endif
-                                                </div>
-                                </div>
-                                <!--/span-->
-                                
                             </div>
                         </div>
                         <div class="form-actions">
