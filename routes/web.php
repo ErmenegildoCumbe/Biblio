@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->middleware('auth')->name('home');
 
 Route::get('/home', function () {
-    return redirect()->route('livro');
+    return redirect()->route('livro.index');
 })->middleware('auth');
 
 Route::get('pacote/requisitar', function () {
