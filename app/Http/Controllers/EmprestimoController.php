@@ -116,7 +116,7 @@ class EmprestimoController extends Controller
         $livro->ano_publicacao = date_create($request->ano_publicacao);
         $livro->bibliotecario_id = Auth::id();
         $livro->save();
-        return redirect()->route('livro.index');        
+        return redirect()->route('livro.index')->with('success', 'Livro Actualizado!!');        
     }
 
     /**
@@ -140,7 +140,7 @@ class EmprestimoController extends Controller
         $livro->save();
         $emprestimo->estado = 1;
         $emprestimo->save();
-        return redirect()->route('emprestimo.index');
+        return redirect()->route('emprestimo.index')->with('success', 'Livro devolvido com sucesso!!');
     }
     public function sucedidos(){
         $emprestimos = Emprestimo::where('estado', 1)->get();
@@ -150,7 +150,7 @@ class EmprestimoController extends Controller
         $emprestimo = Emprestimo::findOrFail($id);
         $emprestimo->estado = 2;
         $emprestimo->save();
-        return redirect()->route('emprestimo.index');
+        return redirect()->route('emprestimo.index')->with('success', 'Emprestimo cancelado com sucesso!!');
     }
     public function cancelados(){
         $emprestimos = Emprestimo::where('estado', 2)->get();

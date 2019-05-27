@@ -59,7 +59,7 @@ class ReservaController extends Controller
             $reserva->bibliotecario_id = Auth::id();
             $reserva->livro_id = $livro->id;
             $reserva->save();
-           return redirect()->route('livro.index');
+           return redirect()->route('livro.index')->with('success', 'Reserva Efectuada com sucesso!!');
         }
         abort(404);
     }
@@ -152,7 +152,7 @@ class ReservaController extends Controller
            $emprestimo->estudante_id = $reserva->estudante_id;
            $emprestimo->livro_id = $livro->id;
            $emprestimo->bibliotecario_id = Auth::id();
-           $emprestimo->estado = 1;
+           $emprestimo->estado = null;
            $emprestimo->save();
            $livro->estado = 2;
            $livro->save();
