@@ -42,8 +42,9 @@ Route::get('/emprestimos/cancelados', 'EmprestimoController@cancelados')->middle
 // Rotas Reservas
 Route::resource('reserva', 'ReservaController')->middleware('auth');
 Route::get('reservar/{id}', 'ReservaController@criar')->middleware('auth');
-Route::get('reserva/confirmar/{id}', 'ReservaController@confirmar')->middleware('auth');
+Route::get('reserva/confirmar/{id}', 'ReservaController@irConfirmar')->middleware('auth');
 Route::get('reserva/cancelar/{id}', 'ReservaController@cancelar')->middleware('auth');
+Route::post('reserva/confirmar/{id}', 'ReservaController@confirmar')->middleware('auth');
 
 
 

@@ -7,6 +7,7 @@ use App\Biblioteca\Reserva;
 use Auth;
 use App\Biblioteca\Livro;
 use App\User;
+use App\Biblioteca\Emprestimo;
 
 class ReservaController extends Controller
 {
@@ -137,8 +138,29 @@ class ReservaController extends Controller
         }
 
     }
-    public function confirmar($id){
-        $reserva = Reserva::findOrFail();
+    public function irConfirmar($id){
+        $reserva = Reserva::findOrFail($id);
+        return view('reservas.confirmar_reserva', compact('reserva'));
+       
+    }
+    public function confirmar($id, Request $request){
+        $reserva = Reserva::findOrFail($id);
+        $livro = $reserva->livro;
+        if($livro->estado == 1){
+            $emprestimo = new Emprestimo; 
+           $emprestimo->data_entrega = date_create($request->data_entrega);
+           $emprestimo->estudante_id = $reserva->estudante_id;
+           $emprestimo->livro_id = $livro->id;
+           $emprestimo->bibliotecario_id = Auth::id();
+           $emprestimo->estado = 1;
+           $emprestimo->save();
+           $livro->estado = 2;
+           $livro->save();
+           $reserva->estado = 1;
+           $reserva->save();
+           return redirect()->route('reserva.index')->with('success', 'Reserva confirmada com sucesso!!');
+        }
+        return redirect()->back()->with('error', 'Livro indisponível');
     }
     
 }

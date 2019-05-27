@@ -197,7 +197,7 @@
                             <li> <a href="{{ route('emprestimo.index') }}"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Confirmados</span></a> </li>
                             <li> <a href="{{ route('reserva.index') }}"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Reservas</span></a> </li>
                             <li> <a href="/emprestimos/cancelados"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Cancelados</span></a> </li>
-                            <li> <a href="/emprestimos/sucedidos"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Bemsucedidos</span></a> </li>
+                            <li> <a href="/emprestimos/sucedidos"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Bem sucedidos</span></a> </li>
                             {{--  <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu"> Minhas Requisiçoes </span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li> <a href="{{ route('meuspendentes') }}"><i class=" fa-fw">T</i><span class="hide-menu">Pendentes</span></a> </li>
@@ -238,19 +238,29 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 @if (session('error'))
-                    <div class="row advertise-sm">
+                    <div class="row">
                         <div class="col-12">
-                            <div class="alert alert-danger alert-dismissible fade show pr-5 mb-0">
-                                <button type="button" class="close close-f-sm" data-dismiss="alert">×</button>
-                                <ul>
-                                    <li>
-                                        {{ session('error')}}
-                                    </li>
-                                </ul>
+                            <div class="panel-body">
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    {{ session('error')}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                @endif        
+                @endif  
+                @if (session('success'))
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="panel-body">
+                                <div class="alert alert-info alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    {{ session('success')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif      
                     @yield("content")
                
 

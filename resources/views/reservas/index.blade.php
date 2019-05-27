@@ -9,7 +9,7 @@
  <div class="row bg-title">
         <!-- .page title -->
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Livros</h4> </div>
+            <h4 class="page-title">Reservas de Lívros</h4> </div>
         <!-- /.page title -->
         <!-- .breadcrumb -->
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
@@ -52,7 +52,7 @@
                             <td> {{ $reserva->bibliotecario->nome }} </td>
                          
                             <td>
-                                <a href="{{ 'reserva/confirmar/'.$reserva->id] }}" type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5" title="Confirmar"><i class="ti-thumb-up"></i></a>
+                                <a href="{{ 'reserva/confirmar/'.$reserva->id }}" type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5" title="Confirmar"><i class="ti-thumb-up"></i></a>
                                 <a href="{{ route('reserva.destroy', ['id'=>$reserva->id]) }}" type="button" class="btn btn-danger btn-outline btn-circle btn-lg m-r-5" title="Cancelar"><i class="ti-trash"></i></a> 
                             </td>
                         </tr>
